@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
+import { enableScreens } from "react-native-screens";
 
-import MealsNavigation from "./Navigation/MealsNavigation";
+import MealsNavigation from "./navigation/MealsNavigation";
+
+enableScreens();
 
 const fetchFont = () => {
   return Font.loadAsync({
