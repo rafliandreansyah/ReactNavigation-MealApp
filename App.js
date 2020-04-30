@@ -10,9 +10,9 @@ enableScreens();
 
 const fetchFont = () => {
   return Font.loadAsync({
-    "source-sans-pro-light": "./assets/Fonts/SourceSansPro-ExtraLight.ttf",
-    "source-sans-pro": "./assets/Fonts/SourceSansPro-Regular.ttf",
-    "source-sans-pro-bold": "./assets/Fonts/SourceSansPro-Bold.ttf",
+    "source-sans-pro-light": require("./assets/Fonts/SourceSansPro-ExtraLight.ttf"),
+    "source-sans-pro": require("./assets/Fonts/SourceSansPro-Regular.ttf"),
+    "source-sans-pro-bold": require("./assets/Fonts/SourceSansPro-Bold.ttf"),
   });
 };
 
