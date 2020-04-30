@@ -15,7 +15,7 @@ const CategoryGridTile = (props) => {
   }
   return (
     <View style={styles.listItem}>
-      <PlatFormTouchable style={{ flex: 1 }}>
+      <PlatFormTouchable style={{ flex: 1 }} onPress={props.onSelect}>
         <View
           style={{
             ...styles.backgroundGrid,
