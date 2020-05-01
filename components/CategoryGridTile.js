@@ -7,6 +7,7 @@ import {
   TouchableNativeFeedback,
   Platform,
 } from "react-native";
+import Colors from "../constant/Colors";
 
 const CategoryGridTile = (props) => {
   let PlatFormTouchable = TouchableOpacity;
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 22,
-    color: "white",
+    color: Colors.primaryColor,
     fontFamily: "source-sans-pro-bold",
   },
 });
