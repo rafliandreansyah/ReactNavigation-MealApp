@@ -19,7 +19,7 @@ const MealItem = (props) => {
 
   return (
     <View style={styles.mealItem}>
-      <Touchable>
+      <Touchable onPress={props.onSelectItem}>
         <View>
           <View style={{ ...styles.mealRow, ...styles.mealHeading }}>
             <ImageBackground

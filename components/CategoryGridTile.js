@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
     height: 150,
     margin: 16,
     borderRadius: 20,
-    overflow: "hidden",
+    overflow: Platform.OS && Platform.Version >= 21 ? "hidden" : "visible",
+    elevation: 5,
   },
   backgroundGrid: {
     flex: 1,
@@ -47,7 +48,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     justifyContent: "flex-end",
     alignItems: "flex-end",
-    elevation: 5,
   },
   title: {
     fontSize: 22,
