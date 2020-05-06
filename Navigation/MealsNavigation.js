@@ -13,6 +13,13 @@ import FavoriteScreen from "../screens/FavoriteScreen";
 
 import Colors from "../constant/Colors";
 
+const defaultNavOptions = {
+  headerStyle: {
+    backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "white",
+  },
+  headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor,
+};
+
 const MealsNavigation = createStackNavigator(
   {
     Categories: CategoriesScreen,
@@ -22,30 +29,17 @@ const MealsNavigation = createStackNavigator(
     CetegoryMealsDetail: MealDetailScreen,
   },
   {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor:
-          Platform.OS === "android" ? Colors.primaryColor : "white",
-      },
-      headerTintColor:
-        Platform.OS === "android" ? "white" : Colors.primaryColor,
-    },
+    defaultNavigationOptions: defaultNavOptions,
   }
 );
 
 const FavoriteNavigation = createStackNavigator(
   {
     Favorite: FavoriteScreen,
+    CetegoryMealsDetail: MealDetailScreen,
   },
   {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor:
-          Platform.OS === "android" ? Colors.primaryColor : "white",
-      },
-      headerTintColor:
-        Platform.OS === "android" ? "white" : Colors.primaryColor,
-    },
+    defaultNavigationOptions: defaultNavOptions,
   }
 );
 
