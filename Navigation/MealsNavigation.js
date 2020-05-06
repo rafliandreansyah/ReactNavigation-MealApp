@@ -4,6 +4,7 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryMealScreen from "../screens/CategoryMealScreen";
@@ -48,32 +49,43 @@ const FavoriteNavigation = createStackNavigator(
   }
 );
 
-const BottomMealNavigation = createBottomTabNavigator(
-  {
-    Meal: {
-      screen: MealsNavigation,
-      navigationOptions: {
-        tabBarIcon: (tabs) => {
-          return (
-            <Ionicons name="md-restaurant" size={25} color={tabs.tintColor} />
-          );
-        },
+const bottomTabConfig = {
+  Meal: {
+    screen: MealsNavigation,
+    navigationOptions: {
+      tabBarIcon: (tabs) => {
+        return (
+          <Ionicons name="md-restaurant" size={25} color={tabs.tintColor} />
+        );
       },
-    },
-    Favorite: {
-      screen: FavoriteNavigation,
-      navigationOptions: {
-        tabBarIcon: (tabs) => {
-          return <Ionicons name="ios-star" size={25} color={tabs.tintColor} />;
-        },
-      },
+      tabBarColor: Colors.primaryColor,
     },
   },
-  {
-    tabBarOptions: {
-      activeTintColor: Colors.secondaryColor,
+  Favorite: {
+    screen: FavoriteNavigation,
+    navigationOptions: {
+      tabBarIcon: (tabs) => {
+        return <Ionicons name="ios-star" size={25} color={tabs.tintColor} />;
+      },
     },
-  }
-);
+    tabBarColor: Colors.secondaryColor,
+  },
+};
+
+const BottomMealNavigation =
+  Platform.OS === "android"
+    ? createMaterialBottomTabNavigator(bottomTabConfig, {
+        activeColor: "white",
+        shifting: true,
+      })
+    : createBottomTabNavigator(
+        bottomTabConfig,
+
+        {
+          tabBarOptions: {
+            activeTintColor: Colors.secondaryColor,
+          },
+        }
+      );
 
 export default createAppContainer(BottomMealNavigation);
