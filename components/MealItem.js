@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import Colors from "../constant/Colors";
+import DefaultText from "./DefaultText";
 
 const MealItem = (props) => {
   let Touchable = TouchableOpacity;
@@ -34,9 +35,15 @@ const MealItem = (props) => {
             </ImageBackground>
           </View>
           <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-            <Text style={styles.textDetail}>{props.duration} minute</Text>
-            <Text style={styles.textDetail}>{props.complexity}</Text>
-            <Text style={styles.textDetail}>{props.affordability}</Text>
+            <DefaultText style={styles.textDetail}>
+              {props.duration} minute
+            </DefaultText>
+            <DefaultText style={styles.textDetail}>
+              {props.complexity}
+            </DefaultText>
+            <DefaultText style={styles.textDetail}>
+              {props.affordability}
+            </DefaultText>
           </View>
         </View>
       </Touchable>
@@ -68,7 +75,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   textDetail: {
-    fontFamily: "source-sans-pro-bold",
     fontSize: 18,
     color: "white",
   },
