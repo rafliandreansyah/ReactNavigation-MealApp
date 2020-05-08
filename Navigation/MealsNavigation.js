@@ -5,11 +5,13 @@ import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
+import { createDrawerNavigator } from "react-navigation-drawer";
 
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryMealScreen from "../screens/CategoryMealScreen";
 import MealDetailScreen from "../screens/MealDetailScreen";
 import FavoriteScreen from "../screens/FavoriteScreen";
+import FilterScreen from "../screens/FilterScreen";
 
 import Colors from "../constant/Colors";
 
@@ -41,6 +43,13 @@ const FavoriteNavigation = createStackNavigator(
   {
     defaultNavigationOptions: defaultNavOptions,
   }
+);
+
+const FilterNavigation = createStackNavigator(
+  {
+    Filter: FilterScreen,
+  },
+  { defaultNavigationOptions: defaultNavOptions }
 );
 
 const bottomTabConfig = {
@@ -82,4 +91,29 @@ const BottomMealNavigation =
         }
       );
 
-export default createAppContainer(BottomMealNavigation);
+const MainNavigation = createDrawerNavigator(
+  {
+    BottomNav: {
+      screen: BottomMealNavigation,
+      navigationOptions: {
+        drawerLabel: "Meal",
+      },
+    },
+    FilterNav: {
+      screen: FilterNavigation,
+      navigationOptions: {
+        drawerLabel: "Filter",
+      },
+    },
+  },
+  {
+    contentOptions: {
+      activeTintColor: Colors.secondaryColor,
+      labelStyle: {
+        fontFamily: "source-sans-pro-bold",
+      },
+    },
+  }
+);
+
+export default createAppContainer(MainNavigation);
