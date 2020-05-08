@@ -1,23 +1,43 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import { MEALS } from "../data/data-dummy";
 
 import HeaderButton from "../components/HeaderButton";
+import DefaultText from "../components/DefaultText";
+import ListData from "../components/ListData";
 
 const MealDetailScreen = (props) => {
   const getMealData = props.navigation.getParam("mealId");
   const mealsData = MEALS.find((meal) => meal.id === getMealData);
 
   return (
-    <View style={styles.screen}>
-      <Text>{mealsData.title}</Text>
-      <Button
-        title="Back to Categories"
-        onPress={() => props.navigation.popToTop()}
-      />
-    </View>
+    <ScrollView>
+      <View>
+        <Image source={{ uri: mealsData.imgUrl }} style={styles.image} />
+        <View style={styles.mealrow}>
+          <DefaultText style={styles.textDetail}>
+            {mealsData.duration} minute
+          </DefaultText>
+          <DefaultText style={styles.textDetail}>
+            {mealsData.complexity}
+          </DefaultText>
+          <DefaultText style={styles.textDetail}>
+            {mealsData.affordability}
+          </DefaultText>
+        </View>
+
+        <Text style={styles.title}>Ingredient</Text>
+        {mealsData.ingredients.map((ingredients) => (
+          <ListData key={ingredients}>{ingredients}</ListData>
+        ))}
+        <Text style={styles.title}>Step</Text>
+        {mealsData.steps.map((steps) => (
+          <ListData key={steps}>{steps}</ListData>
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -40,10 +60,19 @@ MealDetailScreen.navigationOptions = (params) => {
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  mealrow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 16,
+  },
+  image: {
+    width: "100%",
+    height: 200,
+  },
+  title: {
+    fontFamily: "source-sans-pro-bold",
+    fontSize: 20,
+    textAlign: "center",
   },
 });
 
