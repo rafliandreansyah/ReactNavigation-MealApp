@@ -1,9 +1,11 @@
 import React from "react";
+import { View, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 
 import { CATEGORIES } from "../data/data-dummy";
 
 import MealList from "../components/MealList";
+import DefaultText from "../components/DefaultText";
 
 const CategoryMealScreen = (props) => {
   const availableMeals = useSelector((state) => state.meals.filter);
@@ -12,6 +14,13 @@ const CategoryMealScreen = (props) => {
   const meals = availableMeals.filter(
     (meal) => meal.categoryIds.indexOf(catId) >= 0
   );
+  if (meals.length === 0) {
+    return (
+      <View style={styles.textContainer}>
+        <DefaultText>Meal is empty, Check your filter!</DefaultText>
+      </View>
+    );
+  }
 
   return <MealList listData={meals} navigation={props.navigation} />;
 };
@@ -24,5 +33,13 @@ CategoryMealScreen.navigationOptions = (params) => {
     headerTitle: dataCategory.title,
   };
 };
+
+const styles = StyleSheet.create({
+  textContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
 
 export default CategoryMealScreen;
